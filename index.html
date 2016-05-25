@@ -16,20 +16,19 @@
 <script src="xsd/xsd2json.js"></script>
 </head>
 <body>
-	<div id="xml_editor">
+	<textarea id="xml_editor">
 		<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+		   <pbcoreIdentifier />
+		   <pbcoreTitle />
+		   <pbcoreDescription />
 		</pbcoreDescriptionDocument>
-	</div>
+	</textarea>
 	<script>
 		$(function() {
 			var extractor = new Xsd2Json("pbcore-2.1.xsd", {"schemaURI":"demo/examples/pbcore/", "rootElement": "pbcoreDescriptionDocument"});
 			$("#xml_editor").xmlEditor({
 				schema : extractor.getSchema()
 			});
-			// After the root pbcore element, case is not preserved if specified inline, so instead:
-			$('[title="Add pbcoreIdentifier"]').click();
-			$('[title="Add pbcoreTitle"]').click()
-			$('[title="Add pbcoreDescription"]').click()
 		});
 	</script>
 	<footer>

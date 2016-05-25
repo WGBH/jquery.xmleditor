@@ -25,9 +25,29 @@
 	</textarea>
 	<script>
 		$(function() {
+        		var id = location.search.slice(1);
+		        // TODO: Maybe this could work?
+                        // if (id) {
+                        //         $.ajax({
+                        //                 url: 'http://americanarchive.org/api.js', 
+                        //                 data: {
+                        //                         q: 'id:'+id, 
+                        //                         fl: 'xml', 
+                        //                         rows: 1},
+                        //                 jsonp: 'callback', 
+                        //                 dataType: 'jsonp', 
+                        //                 success: function(json) {
+                        //                         var pbcore = json.response.docs[0].xml;
+                        //                         $('#xml_editor').val(pbcore);
+                        //                 }
+                        //         });
+                        // }
 			var extractor = new Xsd2Json("pbcore-2.1.xsd", {"schemaURI":"demo/examples/pbcore/", "rootElement": "pbcoreDescriptionDocument"});
 			$("#xml_editor").xmlEditor({
-				schema : extractor.getSchema()
+				schema : extractor.getSchema(),
+				ajaxOptions : {
+				        xmlRetrievalPath: 'http://americanarchive.org/catalog/'+id+'.pbcore'
+				}
 			});
 		});
 	</script>

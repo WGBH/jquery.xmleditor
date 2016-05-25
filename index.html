@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>jQuery.xmleditor</title>
+<title>PBCore Editor</title>
 <link rel="stylesheet" href="demo/stylesheets/reset.css" type="text/css" />
 <link rel="stylesheet" href="demo/stylesheets/demo.css" type="text/css" />
 <link rel="stylesheet" href="css/jquery.xmleditor.css" type="text/css" />
@@ -13,31 +13,27 @@
 <script src="lib/cycle.js"></script>
 <script src="lib/jquery.autosize-min.js"></script>
 <script src="jquery.xmleditor.js"></script>
+<script src="xsd/xsd2json.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<h1>jQuery.xmleditor MODS Editing Demo</h1>
-			<a href="https://github.com/UNC-Libraries/jquery.xmleditor">View
-				the Project on GitHub <small>UNC-Libraries/jquery.xmleditor</small>
-			</a>
-		</header>
-	</div>
 	<div id="xml_editor">
-		<mods xmlns="http://www.loc.gov/mods/v3"> </mods>
+		<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+			<pbcoreIdentifier></pbcoreIdentifier>
+			<pbcoreTitle></pbcoreTitle>
+			<pbcoreDescription></pbcoreDescription>
+		</pbcoreDescriptionDocument>
 	</div>
 	<script>
 		$(function() {
+			var extractor = new Xsd2Json("pbcore-2.1.xsd", {"schemaURI":"demo/examples/pbcore/", "rootElement": "pbcoreDescriptionDocument"});
 			$("#xml_editor").xmlEditor({
-				schema : "demo/examples/mods.json"
+				schema : extractor.getSchema()
 			});
 		});
 	</script>
 	<footer>
-		<p>
-			This project is maintained by <a
-				href="https://github.com/UNC-Libraries">UNC-Libraries</a>
-		</p>
+		A fork of <a href="https://github.com/UNC-Libraries/jquery.xmleditor">UNC-Libraries/jquery.xmleditor</a>
+		for <a href="http://pbcore.org/">PBCore</a>
 	</footer>
 </body>
 </html>

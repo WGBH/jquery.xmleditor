@@ -18,9 +18,6 @@
 <body>
 	<div id="xml_editor">
 		<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
-			<pbcoreIdentifier></pbcoreIdentifier>
-			<pbcoreTitle></pbcoreTitle>
-			<pbcoreDescription></pbcoreDescription>
 		</pbcoreDescriptionDocument>
 	</div>
 	<script>
@@ -29,6 +26,10 @@
 			$("#xml_editor").xmlEditor({
 				schema : extractor.getSchema()
 			});
+			// After the root pbcore element, case is not preserved if specified inline, so instead:
+			$('[title="Add pbcoreIdentifier"]').click();
+			$('[title="Add pbcoreTitle"]').click()
+			$('[title="Add pbcoreDescription"]').click()
 		});
 	</script>
 	<footer>
